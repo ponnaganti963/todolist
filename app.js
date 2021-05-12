@@ -33,7 +33,7 @@ const item2 = new Item({
   name: "Hit + to add new item."
 });
 const item3 = new Item({
-  name: "Check the box to delete item."
+  name: "Hit bin to delete item."
 });
 
 const defaultitems = [item1, item2, item3];
@@ -55,8 +55,6 @@ app.get("/", function(req, res){
       Item.insertMany(defaultitems,function(err){
         if(err){
           console.log(err);
-        }else{
-          console.log("added");
         }
       });
       res.redirect("/");
@@ -68,7 +66,6 @@ app.get("/", function(req, res){
           lists.push(found.name);
         })
         lists = [...new Set(lists)];
-        console.log(lists);
         res.render("list", {toDoDate: "Today",items: foundItems,lists: lists});
       })
 
@@ -101,7 +98,6 @@ app.get("/:customListName", function(req, res){
             lists.push(found.name);
           })
           lists = [...new Set(lists)];
-          console.log(lists);
           res.render("list", {toDoDate: foundlist.name,items: foundlist.items,lists:lists});
         })
 
@@ -119,7 +115,6 @@ app.post("/", function(req, res){
 if(itemname){
     if(listname === "Today"){
       newItem.save();
-      // listitems.push(item);
       res.redirect("/");
     }else{
       List.findOne({name: listname}, function(err,foundlist){

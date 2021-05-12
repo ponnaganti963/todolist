@@ -11,7 +11,7 @@ h1 {
 }
 
 .box {
-  max-width: 500px;
+  max-width: 400px;
   margin:  auto;
   background: white;
   border-radius: 5px;
@@ -131,7 +131,8 @@ a{
   align-items: center;
 }
 .createlist{
-  margin: 3rem;
+  width: 300px;
+  margin: 3rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
