@@ -1,0 +1,48 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+  <h1><%= toDoDate %></h1>
+</div>
+<div class="box">
+  <% items.forEach(function(item){%>
+  <form action="/delete" method="post">
+    <div class="box" id="list-box">
+      <h4><%= item.name %></h4>
+      <button type="submit" class="deletebutton" name="checkbox" value="<%= item._id %>"><i class="bi bi-trash-fill"></i></button>
+    </div>
+    <input type="hidden" name="listName" value="<%= toDoDate%>">
+  </form>
+  <%})%>
+
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+    <button type="submit" name="list" value="<%= toDoDate%>">+</button>
+  </form>
+</div>
+
+<div class="bottom">
+   <form class="" action="/deletelist" method="post">
+     <div class="btn-group">
+       <button class="btn btn-secondary  dropdown-toggle" type="button" data-bs-toggle="dropdown"  aria-expanded="false">
+         Lists
+       </button>
+       <ul class="dropdown-menu">
+         <li class="dropdown-item"><a href="/">Today</a></li>
+         <% lists.forEach(function(list){%>
+           <div class="dropdownbox">
+            <button type="submit" class="buttondrop" name="button" value="<%= list%>"><i  class="bi bi-dash-circle" ></i></button>
+             <li class="dropdown-item"><a href="/<%=list%>" name="listToDelete"><%= list%></a></li>
+           </div>
+         <%})%>
+
+       </ul>
+     </div>
+   </form>
+    <form class="createlist" action="/new" method="post">
+      <input class="form-control" type="text" name="newlist" placeholder="New List" autocomplete="off">
+      <button class="btn btn-primary" type="submit" name="button">Create new</button>
+    </form>
+
+</div>
+
+<%- include("footer") -%>
